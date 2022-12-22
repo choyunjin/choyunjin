@@ -1,41 +1,42 @@
-## 제1목
+# 파라미터 목록
+자체 sysex에서 쓰는 파라미터 목록이다.
 
-**굵은**
+## 분류
+| 파라미터 번호 | 설명 |
+| :---: | -------- |
+| `00 00 nn nn` | 시스템 설정(리셋 sysex라던가) |
+| `10 00 nn nn` | 기본 설정 |
+| `11 00 nn nn` | 기본 이펙트 관련 설정 |
+| `12 00 nn nn` | Insertion effect 관련 설정 |
+| `20 00 nn nn` | 채널별 설정(1번) |
+| `20 01 nn nn` | 채널별 설정(2번) |
+| `20 02 nn nn` | 채널별 설정(3번) |
+| ----- : ----- | ... |
+| `20 0D nn nn` | 채널별 설정(14번) |
+| `20 0E nn nn` | 채널별 설정(15번) |
+| `20 0F nn nn` | 채널별 설정(16번) |
 
-*기울어진*
+## 목록
+「값 형태」는 보낼 값의 길이는 몇 바이트인지, 그 값을 어떻게 읽는지에 대한 부분이다.
+이게 안 적혀 있으면,
 
-__*굵고 기울어진*__
+- 값의 길이는 상황에 따라 달라질 수 있음
+- 읽을 때는 가장 앞 비트를 제외한 모든 비트를 읽음(0aaa aaaa)
 
---형1광1펜--
+이런 뜻이다.(eg. Insertion effect 파라미터라던가)
 
-~~취소선~~
+공식을 적어 놓은 경우, 해당 공식은 일반 값(얘를 x라 함)을 sysex용 값으로 변환하는 공식이다.
 
-> __성↗! 격이 이상해 성! 격이!! 이걸 왜 -n이라고 놔__ 이걸 왜 -n이라고 놔. 그냥 +n이라고 놓을 것이지. --조심하셔야 됩니다.--
->
-> \- 정승제
+### 시스템 설정
 
-`parseInt()`는 자바스크립트의 내장 함수이다.
+| 파라미터 번호 | 이름 | 값 형태 | 값 | 기본값 | 설명 |
+| ------ | -------- | ------ | ----- | --- | ------------ |
+| `00 00 00 7F` | System reset | `0aaa aaaa` |  0 - 127 (`0x00 - 0x7F`) | N/A | Reset 신호. 값은 아무거나 주면 된다. |
 
-```java
-package kr.choyunjin.onkalo;
+### 기본 설정
 
-/**
- * seed
- * seed horn horn
- * grab
- * nosewrong
- * green onion existle
- * blood cough blood
- */
-public class Test{
-    public static void main(String[] args){
-        if("onkalo" == "onkalo"){
-            System.out.println("온칼로의 전설은 계속된다");
-        }
-    }
-}
-```
-
-위에꺼 주석 부분 출처: <https://github.com/monun>
-
-[![마크로 온칼로 만드신 분. 누구보다 램에 진심이시다](https://avatars.githubusercontent.com/u/77531416?v=4)](https://youtu.be/YETAjYLODos)
+| 파라미터 번호 | 이름 | 값 형태 | 값 | 기본값 | 설명 |
+| ------ | -------- | ------ | ----- | --- | ------------ |
+| `10 00 00 01` | Master tune | `0aaa aaaa`<br>`0bbb bbbb` | -100.0 - +100.0(cent) (공식: (10*x) + 1024) | N/A | cent 단위로 조율. 1키 = 100cent |
+| `10 00 00 02` | Master key shift | `0aaa aaaa` | -24 - +24 (공식: x + 64) | N/A | 음정 조절 |
+| `10 00 00 03` | Master volume | `0aaa aaaa` | 0 - 127 | N/A | 볼륨 조절 |
