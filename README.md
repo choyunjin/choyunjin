@@ -5,7 +5,7 @@ package kr.choyunjin
 ```kotlin
 enchat
 beecoon
-snoo goolem
+snooman
 i run goolem
 tlee
 muchroom tlee
