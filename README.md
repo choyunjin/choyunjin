@@ -4,7 +4,7 @@ package kr.choyunjin
 
 ```kotlin
 enchat
-beecoon
+peecon
 snooman
 i run goolem
 tlee
