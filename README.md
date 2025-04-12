@@ -1,17 +1,27 @@
-```kotlin
-package kr.choyunjin
-```
+```rust
+use earth::life::person::{ Person, PersonBodyParts as BodyParts };
+use kigurumi::Kigurumi;
 
-```kotlin
-enchat
-peecon
-snooman
-i run goolem
-tlee
-muchroom tlee
-moither
-neter portal
-kend portal
+fn main() -> anyhow::Result<()> {
+    let me = Person::me();
+    let room = me.room()?;
+    let closet = me.closet()?;
 
-// Source: https://youtu.be/NXiB7a8iPUY?t=2m22s
-```
+    me.wear_cloth(closet.get("skin suit", &me.thinking())?.into());
+    me.wear_cloth(closet.get("costume", &me.thinking())?.into());
+
+    /**
+     * ```
+     * Kigurumi::new(
+     *     "Silence Suzuka",
+     *     "Umamusume: Pretty Derby",
+     *     KigurumiMaker::StudioRonMaca,
+     *     &me.bank_account
+     * );
+     * ```
+     */
+    let silence_suzuka: Kigurumi = room.take("kigurumi", &me.thinking())?.into();
+    me.put(BodyParts::Head, silence_suzuka);
+
+    Ok(())
+}
