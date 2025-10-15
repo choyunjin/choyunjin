@@ -10,16 +10,14 @@ fn main() -> anyhow::Result<()> {
     me.wear_cloth(closet.get("skin suit", &me.thinking())?.into());
     me.wear_cloth(closet.get("costume", &me.thinking())?.into());
 
-    /**
-     * ```
-     * Kigurumi::new(
-     *     "Silence Suzuka",
-     *     "Umamusume: Pretty Derby",
-     *     KigurumiMaker::StudioRonMaca,
-     *     &me.bank_account
-     * );
-     * ```
-     */
+    /// ```
+    /// Kigurumi::new(
+    ///     "Silence Suzuka",
+    ///     "Umamusume: Pretty Derby",
+    ///     KigurumiMaker::StudioRonMaca,
+    ///     &me.bank_account
+    /// );
+    /// ```
     let silence_suzuka: Kigurumi = room.take("kigurumi", &me.thinking())?.into();
     me.put(BodyParts::Head, silence_suzuka);
 
